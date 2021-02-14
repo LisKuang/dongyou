@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <map id="myMap" style="width: 100%; height:{{windowHeight}};" latitude="{{latitude}}"
+      longitude="{{longitude}}" bindmarkertap="markertap" bindcallouttap="callouttap" bindlabeltap="labeltap"
+      markers="{{markers}}" scale="16">
+      <view slot="callout">
+        <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this">
+          <cover-view class="customCallout" marker-id="{{item}}">
+            <cover-image class="icon" src="/image/voice.png"></cover-image>
+            <cover-view class="content">
+              {{num}}-{{item}}-{{index}}
+            </cover-view>
+          </cover-view>
+        </block>
+      </view>
+
+      <view class="userinfo">
+        <block wx:if="{{!hasUserInfo && canIUse}}">
+          <button class="fa fa-user-circle fa-lg " open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          </button>
+
+        </block>
+        <block wx:else>
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+      </view>
+
+      <view class="buttons">
+        <button type="default" class="fa fa-user-circle "></button>
+
+        <button type="default" class="fa fa-user-circle"></button>
+
+        <button type="default" class="fa fa-user-circle"></button>
+      </view>
+    </map>
+  </view>
+
+</view>
